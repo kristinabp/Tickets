@@ -118,12 +118,14 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Hall.h" />
+    <ClInclude Include="System.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="Hall.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="System.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
