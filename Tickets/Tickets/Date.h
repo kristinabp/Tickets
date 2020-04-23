@@ -20,6 +20,7 @@ public:
 
 	Date& operator=(const Date& other);
 	bool operator==(const Date& other)const;
+	friend std::ostream& operator<<(std::ostream& os, const Date& date);
 
 	void print()const;
 };

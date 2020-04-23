@@ -44,6 +44,7 @@ bool System::book(const std::string name, const Date & date, int row, int seat, 
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
 			events[i]->bookSeat(row, seat);
+			//events[i]->setNote(note);
 			return true;
 		}
 	}
@@ -61,6 +62,75 @@ bool System::unbook(const std::string name, const Date & date, int row, int seat
 		}
 	}
 	return false;
+}
+
+bool System::buy(const std::string name, const Date & date, int row, int seat)
+{
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getName() == name && events[i]->getDate() == date)
+		{
+			events[i]->buy(row, seat);
+			return true;
+		}
+	}
+	return false;
+}
+
+void System::bookings(const std::string name, const Date & date) const
+{
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getName() == name && events[i]->getDate() == date)
+		{
+			events[i]->printBooked();
+		}
+	}
+}
+
+void System::bookings(const std::string name) const
+{
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getName() == name)
+		{
+			std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+			events[i]->printBooked();
+		}
+	}
+}
+
+void System::bookings(const Date & date) const
+{
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getDate() == date)
+		{
+			std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+			events[i]->printBooked();
+		}
+	}
+}
+
+void System::check(int id)
+{
+	if (id > 9999 && id < 1000)
+	{
+		std::cout << "Incorrect id!\n";
+	}
+	else
+	{
+		int row = id / 1000;
+		int seat = id % 1000;
+		for (size_t i = 0; i < events.size(); i++)
+		{
+			if (id == events[i]->getId(row, seat))
+			{
+				std::cout << "Correct id!\n";
+				break;
+			}
+		}
+	}
 }
 
 void System::print() const

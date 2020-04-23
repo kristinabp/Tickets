@@ -44,3 +44,9 @@ void Date::print() const
 {
 	std::cout << this->day << '-' << this->month << '-' << this->year;
 }
+
+std::ostream & operator<<(std::ostream & os, const Date & date)
+{
+	os << date.day << '-' << date.month << '-' << date.year;
+	return os;
+}

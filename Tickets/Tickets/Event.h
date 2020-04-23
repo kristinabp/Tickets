@@ -14,6 +14,7 @@ private:
 	Hall hall;
 	std::string note;
 	std::vector<std::vector<int>> seats;
+	std::vector<std::vector<int>> id;
 	int freeSeats;
 
 	void copy(const Event& other);
@@ -29,17 +30,18 @@ public:
 
 	Event* clone()const;
 
-	//std::string getName()const;
-
 	std::string getName()const;
 	Date getDate()const;
 	Hall getHall()const;
 	int getRows()const;
 	int getSeats()const;
+	int getId(int row, int seat)const;
+
+	void printBooked()const;
 
 	void bookSeat(int row, int seat);
 	void unbookSeat(int row, int seat);
-	bool checkSeat(int row, int seat) const;
+	void buy(int row, int seat);
 
 	void printSeats()const;
 	void print() const;
