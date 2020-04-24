@@ -21,6 +21,7 @@ public:
 	void bookings(const std::string name)const;
 	void bookings(const Date& date)const;
 	void check(int id);
+	void report(const Date& from, const Date& to, const Hall& hall);
 
 	void print()const;
 

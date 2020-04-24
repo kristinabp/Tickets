@@ -16,6 +16,7 @@ private:
 	std::vector<std::vector<int>> seats;
 	std::vector<std::vector<int>> id;
 	int freeSeats;
+	int soldSeats=0;
 
 	void copy(const Event& other);
 
@@ -38,6 +39,7 @@ public:
 	int getId(int row, int seat)const;
 
 	void printBooked()const;
+	void printPaid() const;
 
 	void bookSeat(int row, int seat);
 	void unbookSeat(int row, int seat);

@@ -133,6 +133,23 @@ void System::check(int id)
 	}
 }
 
+void System::report(const Date & from, const Date & to, const Hall & hall)
+{
+	std::cout << "Paid tickets from " << from << " to " << to << " in " << hall << "\n";
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getHall() == hall)
+		{
+			if (events[i]->getDate() >= from && events[i]->getDate() <= to)
+			{
+				std::cout << events[i]->getName() << "\n";
+				events[i]->printPaid();
+			}
+			
+		}
+	}
+}
+
 void System::print() const
 {
 	for (size_t i = 0; i < events.size(); i++)

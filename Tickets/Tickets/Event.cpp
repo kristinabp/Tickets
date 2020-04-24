@@ -96,7 +96,22 @@ void Event::printBooked() const
 		{
 			if (seats[i][j] == 1)
 			{
-				std::cout << "Row: " << i << ", seat: " << j << "\n";
+				std::cout << "Row: " << i+1 << ", seat: " << j+1 << "\n";
+			}
+		}
+	}
+}
+
+void Event::printPaid() const
+{
+	std::cout << "Sold tickets: " << soldSeats << "\n";
+	for (size_t i = 0; i < hall.getRows(); i++)
+	{
+		for (size_t j = 0; j < hall.getSeats(); j++)
+		{
+			if (seats[i][j] == 2)
+			{
+				std::cout << "Row: " << i+1 << ", seat: " << j+1 << "\n";
 			}
 		}
 	}
@@ -141,7 +156,8 @@ void Event::buy(int row, int seat)
 	else
 	{
 		seats[row - 1][seat - 1] = 2;
-		id[row - 1][seat - 1] = row * 1000 + seat;
+		soldSeats++;
+		//id[row - 1][seat - 1] = row * 1000 + seat;
 	}
 }
 

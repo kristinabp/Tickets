@@ -11,6 +11,7 @@ private:
 	int year;
 
 	void copy(const Date& other);
+	bool validDate(int day, int month, int year);
 
 public:
 	Date();
@@ -20,7 +21,19 @@ public:
 
 	Date& operator=(const Date& other);
 	bool operator==(const Date& other)const;
+	bool operator<=(const Date& other) const;
+	bool operator>=(const Date& other)const;
+	Date& operator++(int);
+
 	friend std::ostream& operator<<(std::ostream& os, const Date& date);
+
+	int getDay()const;
+	int getMonth()const;
+	int getYear()const;
+
+	void setDay(int d);
+	void setMonth(int m);
+	void setYear(int y);
 
 	void print()const;
 };

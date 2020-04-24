@@ -24,6 +24,7 @@ public:
 	int getRows()const;
 	int getCapacity()const;
 	int getSeats()const;
+	friend std::ostream& operator<<(std::ostream& os, const Hall& hall);
 
 	void print()const;
 };

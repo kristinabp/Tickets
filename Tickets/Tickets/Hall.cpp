@@ -59,3 +59,9 @@ void Hall::print() const
 {
 	std::cout << "Hall " << this->number << ", seats: " << getCapacity();
 }
+
+std::ostream & operator<<(std::ostream & os, const Hall & hall)
+{
+	os << hall.number;
+	return os;
+}
