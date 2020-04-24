@@ -26,6 +26,7 @@ System & System::addEvent(Event* event)
 
 void System::freeSeats(const std::string name, const Date & date)
 {
+	std::cout << "-------------\tFree seats\t----------------\n ";
 	for (size_t i = 0; i < events.size(); i++)
 	{
 		if (events[i]->getName() == name && events[i]->getDate() == date)
@@ -79,10 +80,13 @@ bool System::buy(const std::string name, const Date & date, int row, int seat)
 
 void System::bookings(const std::string name, const Date & date) const
 {
+	std::cout << "-------------\tBookings  -------------------------------\n";
+	std::cout << "-------------\t" <<name << " , "<< date << "  ---------------\n";
 	for (size_t i = 0; i < events.size(); i++)
 	{
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
+			std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
 			events[i]->printBooked();
 		}
 	}
@@ -90,6 +94,8 @@ void System::bookings(const std::string name, const Date & date) const
 
 void System::bookings(const std::string name) const
 {
+	std::cout << "-------------\tBookings  ----------------\n";
+	std::cout << "-------------\t" << name << "  ---------------\n";
 	for (size_t i = 0; i < events.size(); i++)
 	{
 		if (events[i]->getName() == name)
@@ -102,11 +108,13 @@ void System::bookings(const std::string name) const
 
 void System::bookings(const Date & date) const
 {
+	std::cout << "-------------\tBookings  ----------------\n";
+	std::cout << "-------------\t" << date << "  ---------------\n";
 	for (size_t i = 0; i < events.size(); i++)
 	{
 		if (events[i]->getDate() == date)
 		{
-			std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+			std::cout << events[i]->getName() << "\n";
 			events[i]->printBooked();
 		}
 	}
@@ -135,7 +143,7 @@ void System::check(int id)
 
 void System::report(const Date & from, const Date & to, const Hall & hall)
 {
-	std::cout << "Paid tickets from " << from << " to " << to << " in " << hall << "\n";
+	std::cout << "------- Report from " << from << " to " << to << " in hall N:" << hall << "------\n";
 	for (size_t i = 0; i < events.size(); i++)
 	{
 		if (events[i]->getHall() == hall)
@@ -146,6 +154,19 @@ void System::report(const Date & from, const Date & to, const Hall & hall)
 				events[i]->printPaid();
 			}
 			
+		}
+	}
+}
+
+void System::report(const Date & from, const Date & to)
+{
+	std::cout << "------- Report from " << from << " to " << to << "------\n";
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getDate() >= from && events[i]->getDate() <= to)
+		{
+			std::cout << events[i]->getName() << ", " << events[i]->getDate() << "\n";
+			events[i]->printPaid();
 		}
 	}
 }

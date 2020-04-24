@@ -22,6 +22,7 @@ public:
 	void bookings(const Date& date)const;
 	void check(int id);
 	void report(const Date& from, const Date& to, const Hall& hall);
+	void report(const Date& from, const Date& to);
 
 	void print()const;
 

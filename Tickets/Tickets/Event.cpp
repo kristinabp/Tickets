@@ -104,7 +104,7 @@ void Event::printBooked() const
 
 void Event::printPaid() const
 {
-	std::cout << "Sold tickets: " << soldSeats << "\n";
+	std::cout << "$ Sold: " << soldSeats << "\n";
 	for (size_t i = 0; i < hall.getRows(); i++)
 	{
 		for (size_t j = 0; j < hall.getSeats(); j++)
@@ -156,6 +156,7 @@ void Event::buy(int row, int seat)
 	else
 	{
 		seats[row - 1][seat - 1] = 2;
+		freeSeats--;
 		soldSeats++;
 		//id[row - 1][seat - 1] = row * 1000 + seat;
 	}
@@ -169,11 +170,15 @@ void Event::printSeats() const
 		{
 			if (seats[i - 1][j - 1] == 1)
 			{
-				std::cout << "Row: " << i << ", seat: " << j << " - already booked\n";
+				std::cout << "Row: " << i << ", seat: " << j << " - booked; not paid\n";
 			}
 			else if(seats[i - 1][j - 1] == 0)
 			{
-				std::cout << "Row: " << i << ", seat: " << j << " - not booked yet\n";
+				std::cout << "Row: " << i << ", seat: " << j << " - not booked; not paid\n";
+			}
+			else if (seats[i - 1][j - 1] == 2)
+			{
+				std::cout << "Row: " << i << ", seat: " << j << " - paid\n";
 			}
 		}
 	}
