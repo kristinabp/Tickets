@@ -1,8 +1,2 @@
-﻿  Event.cpp
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(93): warning C4018: '<': signed/unsigned mismatch
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(95): warning C4018: '<': signed/unsigned mismatch
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(108): warning C4018: '<': signed/unsigned mismatch
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(110): warning C4018: '<': signed/unsigned mismatch
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(167): warning C4018: '<=': signed/unsigned mismatch
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(169): warning C4018: '<=': signed/unsigned mismatch
+﻿  main.cpp
   Tickets.vcxproj -> C:\Users\Home PC\Desktop\github-repositories\Tickets\Tickets\Debug\Tickets.exe

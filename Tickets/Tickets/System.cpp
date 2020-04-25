@@ -120,25 +120,35 @@ void System::bookings(const Date & date) const
 	}
 }
 
-void System::check(int id)
+void System::check(std::string id)
 {
-	if (id > 9999 && id < 1000)
+	int counter = 0;
+	int row, seat;
+	std::string cur;
+	while (id[counter] != '-')
 	{
-		std::cout << "Incorrect id!\n";
+		cur = cur + id[counter];
+		counter++;
 	}
-	else
+	row = std::stoi(cur);
+	counter++;
+	cur = "";
+	while (id[counter] != '-')
 	{
-		int row = id / 1000;
-		int seat = id % 1000;
-		for (size_t i = 0; i < events.size(); i++)
+		cur = cur + id[counter];
+		counter++;
+	}
+	seat = std::stoi(cur);
+	
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getId(row, seat) == id)
 		{
-			if (id == events[i]->getId(row, seat))
-			{
-				std::cout << "Correct id!\n";
-				break;
-			}
+			std::cout << "Correct Id.\n";
+			return;
 		}
 	}
+	std::cout << "Incorrect Id.\n";
 }
 
 void System::report(const Date & from, const Date & to, const Hall & hall)

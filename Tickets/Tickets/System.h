@@ -20,7 +20,7 @@ public:
 	void bookings(const std::string name, const Date& date)const;
 	void bookings(const std::string name)const;
 	void bookings(const Date& date)const;
-	void check(int id);
+	void check(std::string id);
 	void report(const Date& from, const Date& to, const Hall& hall);
 	void report(const Date& from, const Date& to);
 
