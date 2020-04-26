@@ -45,7 +45,7 @@ bool System::book(const std::string name, const Date & date, int row, int seat, 
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
 			events[i]->bookSeat(row, seat);
-			//events[i]->setNote(note);
+			events[i]->setNote(note, row, seat);
 			return true;
 		}
 	}
@@ -59,6 +59,7 @@ bool System::unbook(const std::string name, const Date & date, int row, int seat
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
 			events[i]->unbookSeat(row, seat);
+			events[i]->setNote("", row, seat);
 			return true;
 		}
 	}

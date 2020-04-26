@@ -12,7 +12,7 @@ private:
 	std::string name;
 	Date date;
 	Hall hall;
-	std::string note;
+	std::vector<std::vector<std::string>> note;
     std::vector<std::vector<std::string>> id;
 	std::vector<std::vector<int>> seats;
 	int freeSeats;
@@ -20,6 +20,7 @@ private:
 
 	void copy(const Event& other);
 	void createId(int row, int seat);
+	void initalize();
 
 public:
 	Event();
@@ -38,10 +39,13 @@ public:
 	int getRows()const;
 	int getSeats()const;
 	std::string getId(int row, int seat)const;
+	int getFreeSeats()const;
+
+	void setNote(const std::string note, int row, int seat);
 
 	void printBooked()const;
 	void printPaid() const;
-	bool checkPaid(int row, int seat);
+	bool checkPaid(int row, int seat)const;
 
 	void bookSeat(int row, int seat);
 	void unbookSeat(int row, int seat);

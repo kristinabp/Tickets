@@ -6,6 +6,7 @@ void Event::copy(const Event & other)
 	this->date = other.date;
 	this->hall = other.hall;
 	this->seats = other.seats;
+	this->note = other.note;
 	this->id = other.id;
 	this->freeSeats = other.freeSeats;
 	this->soldSeats = other.soldSeats;
@@ -18,10 +19,15 @@ void Event::createId(int row, int seat)
 	id[row - 1][seat - 1] = i;
 }
 
-Event::Event() : name("default"), date(Date()), hall(Hall()), note("empty"),
-seats(std::vector<std::vector<int>>(hall.getRows(), std::vector<int>(hall.getSeats()))),
-id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
+void Event::initalize()
 {
+	for (size_t i = 0; i < hall.getRows(); i++)
+	{
+		for (size_t j = 0; j < hall.getSeats(); j++)
+		{
+			note[i].push_back("");
+		}
+	}
 	for (size_t i = 0; i < hall.getRows(); i++)
 	{
 		for (size_t j = 0; j < hall.getSeats(); j++)
@@ -32,18 +38,19 @@ id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
 	this->freeSeats = hall.getCapacity();
 }
 
-Event::Event(const std::string name, const Date & date, const Hall & hall) : name(name), date(date), hall(hall),
+Event::Event() : name("default"), date(Date()), hall(Hall()), note(std::vector<std::vector<std::string>>(hall.getRows())),
 seats(std::vector<std::vector<int>>(hall.getRows(), std::vector<int>(hall.getSeats()))),
 id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
 {
-	for (size_t i = 0; i < hall.getRows(); i++)
-	{
-		for (size_t j = 0; j < hall.getSeats(); j++)
-		{
-			id[i].push_back("");
-		}
-	}
-	this->freeSeats = hall.getCapacity();
+	initalize();
+}
+
+Event::Event(const std::string name, const Date & date, const Hall & hall) : name(name), date(date), 
+hall(hall), note(std::vector<std::vector<std::string>>(hall.getRows())),
+seats(std::vector<std::vector<int>>(hall.getRows(), std::vector<int>(hall.getSeats()))),
+id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
+{
+	initalize();
 }
 
 Event::Event(const Event & other)
@@ -110,6 +117,16 @@ std::string Event::getId(int row, int seat) const
 	return id[row-1][seat-1];
 }
 
+int Event::getFreeSeats() const
+{
+	return this->freeSeats;
+}
+
+void Event::setNote(const std::string note, int row, int seat)
+{
+	this->note[row - 1][seat - 1] = note;
+}
+
 void Event::printBooked() const
 {
 	std::cout << "---- Booked: " << "----\n";
@@ -119,7 +136,7 @@ void Event::printBooked() const
 		{
 			if (seats[i][j] == 1)
 			{
-				std::cout << "Row: " << i+1 << ", seat: " << j+1  << "\n";
+				std::cout << "Row: " << i+1 << ", seat: " << j+1  <<", "<< this->note[i][j]<<"\n";
 			}
 		}
 	}
@@ -140,7 +157,7 @@ void Event::printPaid() const
 	}
 }
 
-bool Event::checkPaid(int row, int seat)
+bool Event::checkPaid(int row, int seat)const
 {
 	return seats[row-1][seat-1] == 2;
 }
@@ -206,7 +223,7 @@ void Event::printSeats() const
 			}
 			else if (seats[i - 1][j - 1] == 2)
 			{
-				std::cout << "Row: " << i << ", seat: " << j << " - paid" << " " << this->id[i-1][j-1]<<"\n";
+				std::cout << "Row: " << i << ", seat: " << j << " - paid" << " <" << this->id[i-1][j-1]<<">\n";
 			}
 		}
 	}

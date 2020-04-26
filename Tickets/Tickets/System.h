@@ -2,11 +2,14 @@
 #define SYSTEM_H
 
 #include "Event.h"
+#include <algorithm>   
 
 class System
 {
 private:
 	std::vector <Event*> events;
+	
+	void sort();
 
 public:
 	System();
@@ -23,6 +26,8 @@ public:
 	void check(std::string id);
 	void report(const Date& from, const Date& to, const Hall& hall);
 	void report(const Date& from, const Date& to);
+	void mostWatched();
+	void underTen(const Date& from, const Date& to);
 
 	void print()const;
 

@@ -1,2 +1,5 @@
-﻿  main.cpp
-  Tickets.vcxproj -> C:\Users\Home PC\Desktop\github-repositories\Tickets\Tickets\Debug\Tickets.exe
+﻿  System.cpp
+  main.cpp
+  Generating Code...
+main.obj : error LNK2019: unresolved external symbol "public: void __thiscall System::mostWatched(void)" (?mostWatched@System@@QAEXXZ) referenced in function "void __cdecl Test6(void)" (?Test6@@YAXXZ)
+C:\Users\Home PC\Desktop\github-repositories\Tickets\Tickets\Debug\Tickets.exe : fatal error LNK1120: 1 unresolved externals
