@@ -19,7 +19,7 @@ public:
 	void freeSeats(const std::string name, const Date& date);
 	bool book(const std::string name, const Date& date, int row, int seat, const std::string note);
 	bool unbook(const std::string name, const Date& date, int row, int seat);
-	bool buy(const std::string name, const Date& date, int row, int seat);
+	bool buy(const std::string name, const Date& date, int row, int seat, const std::string note);
 	void bookings(const std::string name, const Date& date)const;
 	void bookings(const std::string name)const;
 	void bookings(const Date& date)const;

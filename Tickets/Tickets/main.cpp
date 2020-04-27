@@ -16,9 +16,9 @@ void Test2()
 	System theatre;
 	theatre.addEvent(new Event("The Avengers", Date(25, 4, 2020), Hall(2, 5, 5)));
 	theatre.book("The Avengers", Date(25, 4, 2020), 1, 1, "book");
-	theatre.book("The Avengers", Date(25, 4, 2020), 1, 1, "book");
-	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 2);
-	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 1);
+	theatre.book("The Avengers", Date(25, 4, 2020), 1, 2, "book");
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 2,"");
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 1, "");
 	theatre.freeSeats("The Avengers", Date(25, 4, 2020));
 	theatre.unbook("The Avengers", Date(25, 4, 2020), 1, 1);
 	theatre.freeSeats("The Avengers", Date(25, 4, 2020));
@@ -46,10 +46,10 @@ void Test4()
 	theatre.addEvent(new Event("The Avengers", Date(25, 4, 2020), Hall(2, 5, 5))).
 		addEvent(new Event("The Avengers", Date(26, 4, 2020), Hall(2, 5, 5))).
 		addEvent(new Event("The Wizard of Oz", Date(25, 4, 2020), Hall(3, 5, 5)));
-	theatre.buy("The Avengers", Date(26, 4, 2020), 1, 1);
-	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 3);
-	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 2);
-	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 4);
+	theatre.buy("The Avengers", Date(26, 4, 2020), 1, 1,"");
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 3, "");
+	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 2, "");
+	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 4,"");
 	theatre.check("1-1-T-24-4");
 	theatre.check("1-1-T-26-4");
 }
@@ -60,10 +60,10 @@ void Test5()
 	theatre.addEvent(new Event("The Avengers", Date(25, 4, 2020), Hall(2, 5, 5))).
 		addEvent(new Event("The Avengers", Date(26, 4, 2020), Hall(2, 5, 5))).
 		addEvent(new Event("The Wizard of Oz", Date(25, 4, 2020), Hall(3, 5, 5)));
-	theatre.buy("The Avengers", Date(26, 4, 2020), 1, 1);
-	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 3);
-	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 2);
-	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 4);
+	theatre.buy("The Avengers", Date(26, 4, 2020), 1, 1,"");
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 3, "");
+	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 2,"");
+	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 4, "");
 	theatre.report(Date(25, 4, 2020), Date(27, 4, 2020), Hall(2, 5, 5));
 	theatre.report(Date(25, 4, 2020), Date(27, 4, 2020));
 }
@@ -99,7 +99,24 @@ void Test6()
 	theatre.book("The Wizard of Oz", Date(25, 4, 2020), 2, 3, "Mirela");
 	theatre.book("The Wizard of Oz", Date(25, 4, 2020), 2, 4, "Qnica");
 
-	theatre.mostWatched();
+	//theatre.mostWatched();
+}
+
+void Test7()
+{
+	System theatre;
+	theatre.addEvent(new Event("The Avengers", Date(25, 4, 2020), Hall(2, 1, 5)));
+	theatre.book("The Avengers", Date(25, 4, 2020), 1, 1, "Desislava");
+	theatre.book("The Avengers", Date(25, 4, 2020), 1, 2, "Ivan");
+
+	theatre.freeSeats("The Avengers", Date(25, 4, 2020));
+
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 2, "Petrana");
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 1, "Desislava");
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 5, "Mariq");
+	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 3, "Petar");
+	
+	theatre.freeSeats("The Avengers", Date(25, 4, 2020));
 }
 
 int main()
@@ -110,6 +127,7 @@ int main()
 	//Test4();
 	//Test5();
 	//Test6();
+	Test7();
 
 	return system("pause");
 }

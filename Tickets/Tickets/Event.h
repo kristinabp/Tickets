@@ -6,6 +6,11 @@
 #include <vector>
 #include <string>
 
+enum SeatStatus
+{
+	NOTRESERVED = 0, RESERVED = 1, PAID = 2
+};
+
 class Event
 {
 private:
@@ -14,12 +19,13 @@ private:
 	Hall hall;
 	std::vector<std::vector<std::string>> note;
     std::vector<std::vector<std::string>> id;
-	std::vector<std::vector<int>> seats;
+	std::vector<std::vector<SeatStatus>> seats;
 	int freeSeats;
 	int soldSeats;
 
 	void copy(const Event& other);
 	void createId(int row, int seat);
+	std::string takeIdNote(std::string note);
 	void initalize();
 
 public:
@@ -49,7 +55,7 @@ public:
 
 	void bookSeat(int row, int seat);
 	void unbookSeat(int row, int seat);
-	void buy(int row, int seat);
+	void buy(int row, int seat, std::string note);
 
 	void printSeats()const;
 	void print() const;

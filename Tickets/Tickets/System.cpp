@@ -44,8 +44,8 @@ bool System::book(const std::string name, const Date & date, int row, int seat, 
 	{
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
-			events[i]->bookSeat(row, seat);
 			events[i]->setNote(note, row, seat);
+			events[i]->bookSeat(row, seat);
 			return true;
 		}
 	}
@@ -59,20 +59,19 @@ bool System::unbook(const std::string name, const Date & date, int row, int seat
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
 			events[i]->unbookSeat(row, seat);
-			events[i]->setNote("", row, seat);
 			return true;
 		}
 	}
 	return false;
 }
 
-bool System::buy(const std::string name, const Date & date, int row, int seat)
+bool System::buy(const std::string name, const Date & date, int row, int seat, const std::string note)
 {
 	for (size_t i = 0; i < events.size(); i++)
 	{
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
-			events[i]->buy(row, seat);
+			events[i]->buy(row, seat, note);
 			return true;
 		}
 	}
