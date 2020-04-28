@@ -181,6 +181,41 @@ void System::report(const Date & from, const Date & to)
 	}
 }
 
+void System::mostWatched()
+{
+	std::vector <Event*> cur;
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		cur.push_back(this->events[i]);
+	}
+
+	std::sort(cur.begin(), cur.end(), [](const Event* lhs, const Event* rhs)
+	{
+		return lhs->getFreeSeats() < rhs->getFreeSeats();
+	});
+
+	std::cout << "----------Top 2 :------------\n";
+	for (size_t i = 0; i < 2 ; i++)
+	{
+		cur[i]->print();
+	}
+}
+
+void System::underTen(const Date & from, const Date & to)
+{
+	std::cout << "Least watched events from " << from << " to " << to << "\n";
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		if (events[i]->getDate() >= from && events[i]->getDate() <= to)
+		{
+			if (events[i]->getSoldSeats() <= 0.1*(events[i]->getHall().getCapacity()))
+		    {
+				std::cout << events[i]->getName() << ", " << events[i]->getDate() << "\n";
+		    }
+		}
+	}
+}
+
 void System::print() const
 {
 	for (size_t i = 0; i < events.size(); i++)

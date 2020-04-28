@@ -144,6 +144,11 @@ int Event::getFreeSeats() const
 	return this->freeSeats;
 }
 
+int Event::getSoldSeats() const
+{
+	return this->soldSeats;
+}
+
 void Event::setNote(const std::string note, int row, int seat)
 {
 	this->note[row - 1][seat - 1] = note;

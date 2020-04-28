@@ -46,6 +46,7 @@ public:
 	int getSeats()const;
 	std::string getId(int row, int seat)const;
 	int getFreeSeats()const;
+	int getSoldSeats()const;
 
 	void setNote(const std::string note, int row, int seat);
 

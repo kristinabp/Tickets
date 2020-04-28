@@ -8,8 +8,6 @@ class System
 {
 private:
 	std::vector <Event*> events;
-	
-	void sort();
 
 public:
 	System();
