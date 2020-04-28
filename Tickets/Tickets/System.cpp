@@ -194,8 +194,8 @@ void System::mostWatched()
 		return lhs->getFreeSeats() < rhs->getFreeSeats();
 	});
 
-	std::cout << "----------Top 2 :------------\n";
-	for (size_t i = 0; i < 2 ; i++)
+	std::cout << "----------Top events :------------\n";
+	for (size_t i = 0; i < cur.size() ; i++)
 	{
 		cur[i]->print();
 	}
