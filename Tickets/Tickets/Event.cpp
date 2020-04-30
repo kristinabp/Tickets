@@ -75,6 +75,14 @@ id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
 	initalize();
 }
 
+Event::Event(const std::string name, int day, int month, int year, int num, int rows, int seats): name(name), 
+date(Date(day, month, year)), hall(Hall(num, rows, seats)), note(std::vector<std::vector<std::string>>(hall.getRows())),
+seats(std::vector<std::vector<SeatStatus>>(hall.getRows(), std::vector<SeatStatus>(hall.getSeats()))),
+id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
+{
+	initalize();
+}
+
 Event::Event(const Event & other)
 {
 	copy(other);
@@ -206,7 +214,7 @@ void Event::bookSeat(int row, int seat)
 
 void Event::unbookSeat(int row, int seat)
 {
-	if (seats[row - 1][seat - 1] != NOTRESERVED)
+	if (seats[row - 1][seat - 1] != RESERVED)
 	{
 		std::cout << "Incorrect seat\n";
 	}
@@ -274,4 +282,11 @@ void Event::print() const
 	this->hall.print();
 	std::cout << ", free seats: " << this->freeSeats;
 	std::cout << "\n";
+}
+
+void Event::save(std::ostream & os)
+{
+	os << this->name << " " << this->date.getDay() << " " << this->date.getMonth() << " "
+		<< this->date.getYear() << " " << this->hall.getNumber() << " " << this->hall.getRows() 
+		<< " " << this->hall.getSeats() << "\n";
 }

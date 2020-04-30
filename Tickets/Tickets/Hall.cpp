@@ -65,3 +65,4 @@ std::ostream & operator<<(std::ostream & os, const Hall & hall)
 	os << hall.number;
 	return os;
 }
+

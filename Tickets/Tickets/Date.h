@@ -26,6 +26,7 @@ public:
 	Date& operator++(int);
 
 	friend std::ostream& operator<<(std::ostream& os, const Date& date);
+	friend std::istream& operator>>(std::istream& os, Date& date);
 
 	int getDay()const;
 	int getMonth()const;

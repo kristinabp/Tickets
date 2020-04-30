@@ -3,15 +3,28 @@
 
 #include "Event.h"
 #include <algorithm>   
+#include <fstream>
+#include <sstream> 
 
 class System
 {
 private:
 	std::vector <Event*> events;
+	std::string fileName;
+	std::string command;
+
+	void open(const std::string fileName);
+	void save();
+	void saveAs(const std::string fileName);
+	void close();
+	void help();
+	void exit();
 
 public:
 	System();
 	System(std::vector<Event*> events);
+
+	void run();
 
 	System& addEvent(Event* event);
 	void freeSeats(const std::string name, const Date& date);

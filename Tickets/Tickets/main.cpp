@@ -46,12 +46,12 @@ void Test4()
 	theatre.addEvent(new Event("The Avengers", Date(25, 4, 2020), Hall(2, 5, 5))).
 		addEvent(new Event("The Avengers", Date(26, 4, 2020), Hall(2, 5, 5))).
 		addEvent(new Event("The Wizard of Oz", Date(25, 4, 2020), Hall(3, 5, 5)));
-	theatre.buy("The Avengers", Date(26, 4, 2020), 1, 1,"");
+	theatre.buy("The Avengers", Date(26, 4, 2020), 1, 1,"kristina");
 	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 3, "");
 	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 2, "");
 	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 4,"");
-	theatre.check("1-1-T-24-4");
-	theatre.check("1-1-T-26-4");
+	theatre.check("1-1--24-4");
+	theatre.check("1-1-kristina-26-4");
 }
 
 void Test5()
@@ -148,9 +148,12 @@ int main()
 	//Test3();
 	//Test4();
 	//Test5();
-	Test6();
+	//Test6();
 	//Test7();
 	//Test8();
+
+	System s;
+	s.run();
 
 	return system("pause");
 }
