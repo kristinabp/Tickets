@@ -18,6 +18,12 @@ void System::open(const std::string fileName)
 
 		std::cout << "> open " << fileName << "\n";
 		std::cout << "Successfully opened " << fileName << "\n";
+		std::cout << "------------------------------------------\n";
+		for (size_t i = 0; i < events.size(); i++)
+		{
+			events[i]->print();
+		}
+		std::cout << "------------------------------------------\n";
 	}
 	else
 	{
@@ -164,17 +170,18 @@ void System::run()
 		}
 		else if (command == "book" || command == "Book")
 		{
-			std::string name, n;
+			std::string event, name;
 			int d, m, y, s, r;
 			std::cout << "event : ";
-			getline(std::cin, name);
+			getline(std::cin, event);
 			std::cout << "date: ";
 			std::cin >> d >> m >> y;
-			std::cout << "row , seat: ";
+			std::cout << "row, seat: ";
 			std::cin >> r >> s;
-			std::cout << "name : ";
-			getline(std::cin, n);
-			book(name, Date(d, m, y),r, s, n);
+			std::cin.ignore();
+			std::cout << "name: ";
+			getline(std::cin, name);
+			book(name, Date(d, m, y),r, s, name);
 		}
 		else if (command == "unbook" || command == "Unbook")
 		{
@@ -190,20 +197,22 @@ void System::run()
 		}
 		else if (command == "buy" || command == "Buy")
 		{
-			std::string name, n;
+			std::string event, name;
 			int d, m, y, s, r;
-			std::cout << "event : ";
-			getline(std::cin, name);
+			std::cout << "event: ";
+			std::getline(std::cin, event);
 			std::cout << "date: ";
 			std::cin >> d >> m >> y;
 			std::cout << "row , seat: ";
 			std::cin >> r >> s;
-			std::cout << "name : ";
-			getline(std::cin, n);
-			buy(name, Date(d, m, y), r, s, n);
+			std::cin.ignore();
+			std::cout << "name: ";
+			std::getline(std::cin, name);
+			buy(name, Date(d, m, y), r, s, name);
 		}
 		else if (command == "bookings" || command == "Bookings")
 		{
+			std::string event, name;
 			int d, m, y;
 			std::cout << "date: ";
 			std::cin >> d >> m >> y;
@@ -212,6 +221,7 @@ void System::run()
 		else if (command == "check" || command == "Check")
 		{
 			std::string id;
+			std::cout << "id: ";
 			getline(std::cin, id);
 			check(id);
 		}
@@ -317,8 +327,16 @@ void System::bookings(const std::string name, const Date & date) const
 	{
 		if (events[i]->getName() == name && events[i]->getDate() == date)
 		{
-			std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
-			events[i]->printBooked();
+			if (events[i]->getFreeSeats() == events[i]->getHall().getCapacity())
+			{
+				std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+				std::cout << "No booked tickets yet.\n";
+			}
+			else
+			{
+				std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+				events[i]->printBooked();
+			}
 		}
 	}
 }
@@ -331,8 +349,16 @@ void System::bookings(const std::string name) const
 	{
 		if (events[i]->getName() == name)
 		{
-			std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
-			events[i]->printBooked();
+			if (events[i]->getFreeSeats() == events[i]->getHall().getCapacity())
+			{
+				std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+				std::cout << "No booked tickets yet.\n";
+			}
+			else
+			{
+				std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+				events[i]->printBooked();
+			}
 		}
 	}
 }
@@ -345,8 +371,17 @@ void System::bookings(const Date & date) const
 	{
 		if (events[i]->getDate() == date)
 		{
-			std::cout << events[i]->getName() << "\n";
-			events[i]->printBooked();
+			std::cout << "-------------------------------------------\n";
+			if (events[i]->getFreeSeats() == events[i]->getHall().getCapacity())
+			{
+				std::cout << events[i]->getName() << " ," << events[i]->getDate() << "\n";
+				std::cout << "No booked tickets yet.\n";
+			}
+			else
+			{
+				std::cout << events[i]->getName() << "\n";
+				events[i]->printBooked();
+			}
 		}
 	}
 }

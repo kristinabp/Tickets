@@ -57,7 +57,7 @@ int Hall::getSeats() const
 
 void Hall::print() const
 {
-	std::cout << "Hall " << this->number << ", seats: " << getCapacity();
+	std::cout << "Hall " << this->number  /*<<", seats: " << getCapacity()*/;
 }
 
 std::ostream & operator<<(std::ostream & os, const Hall & hall)

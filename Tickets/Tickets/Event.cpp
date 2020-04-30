@@ -15,7 +15,7 @@ void Event::copy(const Event & other)
 void Event::createId(int row, int seat)
 {
 	std::string i = std::to_string(row) + "-" + std::to_string(seat) + "-" + this->note[row - 1][seat - 1] + "-" + std::to_string(date.getDay()) + "-" + std::to_string(date.getMonth());
-	id[row - 1][seat - 1] = i;
+	id[row-1][seat-1] = i;
 }
 
 std::string Event::takeIdNote(std::string note)
@@ -164,14 +164,13 @@ void Event::setNote(const std::string note, int row, int seat)
 
 void Event::printBooked() const
 {
-	std::cout << "---- Booked: " << "----\n";
 	for (size_t i = 0; i < hall.getRows(); i++)
 	{
 		for (size_t j = 0; j < hall.getSeats(); j++)
 		{
 			if (seats[i][j] == 1)
 			{
-				std::cout << "Row: " << i+1 << ", seat: " << j+1  <<", "<< this->note[i][j]<<"\n";
+				std::cout << "Row: " << i+1 << ", seat: " << j+1  <<", "<< this->note[i][j]<< "\n";
 			}
 		}
 	}
@@ -203,6 +202,10 @@ void Event::bookSeat(int row, int seat)
 	{
 		std::cout << "The seat is already booked.\n";
 	}
+	else if (seats[row - 1][seat - 1] == PAID)
+	{
+		std::cout << "The seat is already paid.\n";
+	}
 	else
 	{
 		seats[row - 1][seat - 1] = RESERVED;
@@ -229,7 +232,7 @@ void Event::unbookSeat(int row, int seat)
 
 void Event::buy(int row, int seat,std::string note)
 {
-	if (seats[row - 1][seat - 1] > RESERVED)
+	if (seats[row - 1][seat - 1] == PAID)
 	{
 		std::cout << "The seat is already paid.\n";
 	}
@@ -280,8 +283,9 @@ void Event::print() const
 	this->date.print();
 	std::cout << ", ";
 	this->hall.print();
-	std::cout << ", free seats: " << this->freeSeats;
 	std::cout << "\n";
+	/*std::cout << ", free seats: " << this->freeSeats;
+	std::cout << "\n";*/
 }
 
 void Event::save(std::ostream & os)

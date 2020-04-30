@@ -5,6 +5,8 @@
 #include <algorithm>   
 #include <fstream>
 #include <sstream> 
+#include <cstring>
+#include <iostream>
 
 class System
 {
