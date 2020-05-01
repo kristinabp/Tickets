@@ -64,7 +64,7 @@ void Test5()
 	theatre.buy("The Avengers", Date(25, 4, 2020), 1, 3, "");
 	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 2,"");
 	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 4, "");
-	theatre.report(Date(25, 4, 2020), Date(27, 4, 2020), Hall(2, 5, 5));
+	theatre.report(Date(25, 4, 2020), Date(27, 4, 2020), 2);
 	theatre.report(Date(25, 4, 2020), Date(27, 4, 2020));
 }
 

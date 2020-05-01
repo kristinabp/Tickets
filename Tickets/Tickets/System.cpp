@@ -19,6 +19,7 @@ void System::open(const std::string fileName)
 		std::cout << "> open " << fileName << "\n";
 		std::cout << "Successfully opened " << fileName << "\n";
 		std::cout << "------------------------------------------\n";
+		std::cout << "-----------Available events:--------------\n";
 		for (size_t i = 0; i < events.size(); i++)
 		{
 			events[i]->print();
@@ -77,7 +78,7 @@ void System::saveAs(const std::string fileName)
 void System::help()
 {
 	std::cout << "> help\n";
-	std::cout << "------ The following commands are supported : -------\n";
+	std::cout << "------ The following commands are supported : -------------------------------------------------\n";
 	std::cout << "|open <file>				opens <file>\n";
 	std::cout << "|close					closes currently opened file\n";
 	std::cout << "|save					saves the currently open file\n";
@@ -94,6 +95,7 @@ void System::help()
 	std::cout << "|report <from> <to> [<hall>]		shows a report of paid tickets from <date> to <date> in <hall>\n";
 	std::cout << "|mostwatched				shows the most watched events\n";
 	std::cout << "|underten <from> <to>			shows the events with under 10% of paid tickets\n";
+	std::cout << "-----------------------------------------------------------------------------------------------\n";
 }
 
 void System::exit()
@@ -181,7 +183,7 @@ void System::run()
 			std::cin.ignore();
 			std::cout << "name: ";
 			getline(std::cin, name);
-			book(name, Date(d, m, y),r, s, name);
+			book(event, Date(d, m, y),r, s, name);
 		}
 		else if (command == "unbook" || command == "Unbook")
 		{
@@ -208,15 +210,43 @@ void System::run()
 			std::cin.ignore();
 			std::cout << "name: ";
 			std::getline(std::cin, name);
-			buy(name, Date(d, m, y), r, s, name);
+			buy(event, Date(d, m, y), r, s, name);
 		}
 		else if (command == "bookings" || command == "Bookings")
 		{
 			std::string event, name;
+			std::string sD, sM, sY;
+
 			int d, m, y;
+			d = m = y = 0;
+
+			std::cout << "event: ";
+			std::getline(std::cin, event);
+
 			std::cout << "date: ";
-			std::cin >> d >> m >> y;
-			bookings(Date(d, m, y));
+			std::getline(std::cin, sD);
+			std::getline(std::cin, sM);
+			std::getline(std::cin, sY);
+
+			if (!sD.empty() && !sM.empty() && !sY.empty())
+			{
+				d = atoi(sD.c_str());
+				m = atoi(sM.c_str());
+				y = atoi(sY.c_str());
+			}
+
+			if (event == "")
+			{
+				bookings(Date(d, m, y));
+			}
+			else if (d > 0 && m > 0 && y > 0)
+			{
+				bookings(event, Date(d, m, y));
+			}
+			else
+			{
+				bookings(event);
+			}
 		}
 		else if (command == "check" || command == "Check")
 		{
@@ -227,12 +257,27 @@ void System::run()
 		}
 		else if (command == "report" || command == "Report")
 		{
-			int d1, m1, y1, d2, m2, y2;
+			int d1, m1, y1, d2, m2, y2, n;
 			std::cout << "from: ";
 			std::cin >> d1 >> m1 >> y1;
 			std::cout << "to: ";
 			std::cin >> d2 >> m2 >> y2;
-			report(Date(d1, m1, y1), Date(d2, m2, y2));
+			std::cin.ignore();
+			std::cout << "Hall number: ";
+			std::string hall;
+			getline(std::cin, hall);
+			if (hall != "")
+			{
+				n = atoi(hall.c_str());
+			}
+			if (hall == "")
+			{
+				report(Date(d1, m1, y1), Date(d2, m2, y2));
+			}
+			else
+			{
+				report(Date(d1, m1, y1), Date(d2, m2, y2),n);
+			}
 		}
 		else if (command == "mostwatched" || command == "mostWatched" || command == "MostWatched" || command == "Mostwatched")
 		{
@@ -257,7 +302,7 @@ System & System::addEvent(Event* event)
 		if (event->getDate() == events[i]->getDate()
 			&& event->getHall() == events[i]->getHall())
 		{
-			std::cout << "!error - already exist an event ot this date in this hall!\n";
+			std::cout << "!error - already exist an event on this date in this hall!\n";
 			return *this;
 		}
 	}
@@ -290,6 +335,8 @@ bool System::book(const std::string name, const Date & date, int row, int seat, 
 			return true;
 		}
 	}
+
+	std::cout << "Incorrect event. Please try again!\n";
 	return false;
 }
 
@@ -303,6 +350,8 @@ bool System::unbook(const std::string name, const Date & date, int row, int seat
 			return true;
 		}
 	}
+
+	std::cout << "Incorrect event. Please try again!\n";
 	return false;
 }
 
@@ -338,6 +387,7 @@ void System::bookings(const std::string name, const Date & date) const
 				events[i]->printBooked();
 			}
 		}
+		std::cout << "-------------------------------------------\n";
 	}
 }
 
@@ -361,6 +411,7 @@ void System::bookings(const std::string name) const
 			}
 		}
 	}
+	std::cout << "-------------------------------------------\n";
 }
 
 void System::bookings(const Date & date) const
@@ -384,6 +435,7 @@ void System::bookings(const Date & date) const
 			}
 		}
 	}
+	std::cout << "-------------------------------------------\n";
 }
 
 void System::check(std::string id)
@@ -417,19 +469,18 @@ void System::check(std::string id)
 	std::cout << "Incorrect Id.\n";
 }
 
-void System::report(const Date & from, const Date & to, const Hall & hall)
+void System::report(const Date & from, const Date & to, int hall)
 {
 	std::cout << "------- Report from " << from << " to " << to << " in hall N:" << hall << "------\n";
 	for (size_t i = 0; i < events.size(); i++)
 	{
-		if (events[i]->getHall() == hall)
+		if (events[i]->getHall().getNumber() == hall)
 		{
 			if (events[i]->getDate() >= from && events[i]->getDate() <= to)
 			{
 				std::cout << events[i]->getName() << "\n";
 				events[i]->printPaid();
 			}
-			
 		}
 	}
 }

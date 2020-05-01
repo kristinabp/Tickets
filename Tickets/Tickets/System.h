@@ -22,6 +22,8 @@ private:
 	void help();
 	void exit();
 
+	void stringToDate(const std::string str);
+
 public:
 	System();
 	System(std::vector<Event*> events);
@@ -37,7 +39,7 @@ public:
 	void bookings(const std::string name)const;
 	void bookings(const Date& date)const;
 	void check(std::string id);
-	void report(const Date& from, const Date& to, const Hall& hall);
+	void report(const Date& from, const Date& to,int hall);
 	void report(const Date& from, const Date& to);
 	void mostWatched();
 	void underTen(const Date& from, const Date& to);
