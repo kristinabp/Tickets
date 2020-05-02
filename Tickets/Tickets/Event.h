@@ -55,9 +55,9 @@ public:
 	void printPaid() const;
 	bool checkPaid(int row, int seat)const;
 
-	void bookSeat(int row, int seat);
+	void bookSeat(int row, int seat, std::string name);
 	void unbookSeat(int row, int seat);
-	void buy(int row, int seat, std::string note);
+	void buy(int row, int seat, std::string name);
 
 	void printSeats()const;
 	void print() const;

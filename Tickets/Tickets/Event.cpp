@@ -196,19 +196,34 @@ bool Event::checkPaid(int row, int seat)const
 	return seats[row-1][seat-1] == 2;
 }
 
-void Event::bookSeat(int row, int seat)
+void Event::bookSeat(int row, int seat, std::string name)
 {
 	if (seats[row-1][seat-1] == RESERVED )
 	{
-		std::cout << "The seat is already booked.\n";
+		if (note[row - 1][seat - 1] == name)
+		{
+			std::cout << "The seat is already booked by " << name << ".\n";
+		}
+		else
+		{
+			std::cout << "The seat is already booked.\n";
+		}
 	}
 	else if (seats[row - 1][seat - 1] == PAID)
 	{
-		std::cout << "The seat is already paid.\n";
+		if (note[row - 1][seat - 1] == name)
+		{
+			std::cout << "The seat is already paid by " << name << ".\n";
+		}
+		else
+		{
+			std::cout << "The seat is already paid.\n";
+		}
 	}
 	else
 	{
 		seats[row - 1][seat - 1] = RESERVED;
+		note[row - 1][seat - 1] = name;
 		freeSeats--;
 		createId(row, seat);
 	}
@@ -219,7 +234,7 @@ void Event::unbookSeat(int row, int seat)
 {
 	if (seats[row - 1][seat - 1] != RESERVED)
 	{
-		std::cout << "Incorrect seat\n";
+		std::cout << "Incorrect seat.\n";
 	}
 	else
 	{
@@ -230,27 +245,37 @@ void Event::unbookSeat(int row, int seat)
 	}
 }
 
-void Event::buy(int row, int seat,std::string note)
+void Event::buy(int row, int seat,std::string name)
 {
 	if (seats[row - 1][seat - 1] == PAID)
 	{
-		std::cout << "The seat is already paid.\n";
+		if (note[row - 1][seat - 1] == name)
+		{
+			std::cout << "The seat is already paid by " << name << ".\n";
+		}
+		else
+		{
+			std::cout << "The seat is already paid.\n";
+		}
 	}
 	else if (seats[row - 1][seat - 1] == RESERVED)
 	{
-		if (takeIdNote(id[row - 1][seat - 1]) == note)
+		if (takeIdNote(id[row - 1][seat - 1]) == name)
 		{
 			seats[row - 1][seat - 1] = PAID;
 			soldSeats++;
 		}
-		else std::cout << "The seat is already booked.\n";
+		else
+		{
+			std::cout << "The seat is already booked.\n";
+		}
 	}
 	else
 	{
 		seats[row - 1][seat - 1] = PAID;
 		freeSeats--;
 		soldSeats++;
-		this->note[row - 1][seat - 1] = note;
+		this->note[row - 1][seat - 1] = name;
 		createId(row, seat);
 	}
 }

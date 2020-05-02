@@ -1,7 +1,5 @@
 ﻿  System.cpp
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\system.cpp(166): warning C4101: 's': unreferenced local variable
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\system.cpp(166): warning C4101: 'n': unreferenced local variable
-c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\system.cpp(166): warning C4101: 'r': unreferenced local variable
-  main.cpp
-  Generating Code...
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\system.cpp(180): warning C4101: 's': unreferenced local variable
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\system.cpp(180): warning C4101: 'n': unreferenced local variable
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\system.cpp(180): warning C4101: 'r': unreferenced local variable
   Tickets.vcxproj -> C:\Users\Home PC\Desktop\github-repositories\Tickets\Tickets\Debug\Tickets.exe

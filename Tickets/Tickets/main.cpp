@@ -120,7 +120,7 @@ void Test7()
 	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 3, "Mirela");
 	theatre.buy("The Wizard of Oz", Date(25, 4, 2020), 2, 4, "Qnica");
 
-	theatre.underTen(Date(25, 4, 2020), Date(28, 4, 2020));
+	theatre.underTen(Date(25, 4, 2020), Date(28, 4, 2020),std::cout);
 }
 
 void Test8()

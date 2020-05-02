@@ -14,6 +14,7 @@ private:
 	std::vector <Event*> events;
 	std::string fileName;
 	std::string command;
+	bool isOpen = false;
 
 	void open(const std::string fileName);
 	void save();
@@ -21,8 +22,6 @@ private:
 	void close();
 	void help();
 	void exit();
-
-	void stringToDate(const std::string str);
 
 public:
 	System();
@@ -42,7 +41,8 @@ public:
 	void report(const Date& from, const Date& to,int hall);
 	void report(const Date& from, const Date& to);
 	void mostWatched();
-	void underTen(const Date& from, const Date& to);
+	void underTen(const Date& from, const Date& to, std::ostream& os);
+	
 
 	void print()const;
 
