@@ -2,6 +2,9 @@
 #include <vector>
 #include "System.h"
 
+#include "Invoker.h"
+#include "OpenCommand.h"
+
 void Test1()
 {
 	System theatre;
@@ -152,8 +155,16 @@ int main()
 	//Test7();
 	//Test8();
 
-	System s;
-	s.run();
+	/*System s;
+	s.run();*/
+
+	Invoker remote;
+	std::string input;
+	while (true)
+	{
+		getline(std::cin, input);
+		remote.executeCommand(input);
+	}
 
 	return system("pause");
 }

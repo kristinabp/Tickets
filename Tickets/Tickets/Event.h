@@ -31,7 +31,6 @@ private:
 public:
 	Event();
 	Event(const std::string name, const Date& date, const Hall& hall);
-	Event(const std::string name, int day, int month, int year, int num, int rows, int seats);
 	Event(const Event& other);
 	~Event();
 

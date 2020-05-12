@@ -14,7 +14,8 @@ void Event::copy(const Event & other)
 
 void Event::createId(int row, int seat)
 {
-	std::string i = std::to_string(row) + "-" + std::to_string(seat) + "-" + this->note[row - 1][seat - 1] + "-" + std::to_string(date.getDay()) + "-" + std::to_string(date.getMonth());
+	std::string i = std::to_string(row) + "-" + std::to_string(seat) + "-" + this->note[row - 1][seat - 1] + "-" 
+	+ std::to_string(date.getYear()) + "-" + std::to_string(date.getMonth()) + "-" + std::to_string(date.getDay());
 	id[row-1][seat-1] = i;
 }
 
@@ -75,14 +76,6 @@ id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
 	initalize();
 }
 
-Event::Event(const std::string name, int day, int month, int year, int num, int rows, int seats): name(name), 
-date(Date(day, month, year)), hall(Hall(num, rows, seats)), note(std::vector<std::vector<std::string>>(hall.getRows())),
-seats(std::vector<std::vector<SeatStatus>>(hall.getRows(), std::vector<SeatStatus>(hall.getSeats()))),
-id(std::vector<std::vector<std::string>>(hall.getRows())), soldSeats(0)
-{
-	initalize();
-}
-
 Event::Event(const Event & other)
 {
 	copy(other);
@@ -111,11 +104,6 @@ Event * Event::clone() const
 {
 	return new Event(*this);
 }
-//
-//void Event::setNote(int row, int seat)
-//{
-//	this->note[row][seat] = note;
-//}
 
 std::string Event::getName() const
 {
@@ -309,13 +297,11 @@ void Event::print() const
 	std::cout << ", ";
 	this->hall.print();
 	std::cout << "\n";
-	/*std::cout << ", free seats: " << this->freeSeats;
-	std::cout << "\n";*/
 }
 
 void Event::save(std::ostream & os)
 {
-	os << this->name << " " << this->date.getDay() << " " << this->date.getMonth() << " "
-		<< this->date.getYear() << " " << this->hall.getNumber() << " " << this->hall.getRows() 
-		<< " " << this->hall.getSeats() << "\n";
+	os << this->name << "\t" << this->date.getYear() << "\t" << this->date.getMonth() << "\t"
+		<< this->date.getDay() << "\t" << this->hall.getNumber() << "\t" << this->hall.getRows() 
+		<< "\t" << this->hall.getSeats() << "\n";
 }

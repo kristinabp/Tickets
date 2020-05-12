@@ -2,34 +2,41 @@
 
 void System::open(const std::string fileName)
 {
-	this->isOpen = true;
 	std::fstream inputFile;
 	inputFile.open(fileName, std::ios::in);
-
-	if (inputFile.is_open())
+	
+	if (!isOpen)
 	{
-		this->fileName = fileName;
-		std::string name;
-		int n, r, s, d, m, y;
-		while (inputFile >> name >> d >> m >> y >> n >> r >> s) {
-			addEvent(new Event(name, Date(d,m,y), Hall(n,r,s)));
-		}
-
-		inputFile.close();
-
-		std::cout << "> open " << fileName << "\n";
-		std::cout << "Successfully opened " << fileName << "\n";
-		std::cout << "------------------------------------------\n";
-		std::cout << "-----------Available events:--------------\n";
-		for (size_t i = 0; i < events.size(); i++)
+		if (inputFile.is_open())
 		{
-			events[i]->print();
+			this->isOpen = true;
+			this->fileName = fileName;
+			std::string name;
+			int n, r, s, d, m, y;
+			while (inputFile >> name >> y >> m >> d >> n >> r >> s) {
+				addEvent(new Event(name, Date(y, m, d), Hall(n, r, s)));
+			}
+
+			inputFile.close();
+
+			std::cout << "> open " << fileName << "\n";
+			std::cout << "Successfully opened " << fileName << "\n";
+			std::cout << "------------------------------------------\n";
+			std::cout << "-----------Available events:--------------\n";
+			for (size_t i = 0; i < events.size(); i++)
+			{
+				events[i]->print();
+			}
+			std::cout << "------------------------------------------\n";
 		}
-		std::cout << "------------------------------------------\n";
+		else
+		{
+			std::cout << "Couldn't open " << fileName << "\n";
+		}
 	}
 	else
 	{
-		std::cout << "Couldn't open " << fileName << "\n";
+
 	}
 
 }
@@ -51,7 +58,7 @@ void System::save()
 	}
 	else
 	{
-		std::cout << "Couldn't open " << fileName << "\n";
+		std::cout << "You have already opened a file.\n " ;
 	}
 
 }
@@ -167,11 +174,15 @@ void System::run()
 			int d, m, y, n, r, s;
 			std::cout << "event : ";
 			getline(std::cin, name);
-			std::cout << "date: ";
-			std::cin >> d >> m >> y;
-			std::cout << "hall:";
+			std::cout << "year: ";
+			std::cin >>  y;
+			std::cout << "month: ";
+			std::cin >> m;
+			std::cout << "day: ";
+			std::cin >> d;
+			std::cout << "hall :";
 			std::cin >> n >> r >> s;
-			addEvent(new Event(name, Date(d, m, y), Hall(n, r, s)));
+			addEvent(new Event(name, Date(y, m, d), Hall(n, r, s)));
 		}
 		else if ((command == "freeseats" || command == "FreeSeats" || command == "Freeseats" || command == "freeSeats") 
 			            && isOpen)
@@ -180,9 +191,13 @@ void System::run()
 			int d, m, y, n, r, s;
 			std::cout << "event : ";
 			getline(std::cin, name);
-			std::cout << "date: ";
-			std::cin >> d >> m >> y;
-			freeSeats(name, Date(d, m, y));
+			std::cout << "year: ";
+			std::cin >> y;
+			std::cout << "month: ";
+			std::cin >> m;
+			std::cout << "day: ";
+			std::cin >> d;
+			freeSeats(name, Date(y, m, d));
 		}
 		else if ((command == "book" || command == "Book") && isOpen)
 		{
@@ -190,14 +205,18 @@ void System::run()
 			int d, m, y, s, r;
 			std::cout << "Event: ";
 			getline(std::cin, event);
-			std::cout << "Date: ";
-			std::cin >> d >> m >> y;
+			std::cout << "year: ";
+			std::cin >> y;
+			std::cout << "month: ";
+			std::cin >> m;
+			std::cout << "day: ";
+			std::cin >> d;
 			std::cout << "Row, seat: ";
 			std::cin >> r >> s;
 			std::cin.ignore();
 			std::cout << "Customer name: ";
 			getline(std::cin, name);
-			book(event, Date(d, m, y),r, s, name);
+			book(event, Date(y, m, d),r, s, name);
 		}
 		else if ((command == "unbook" || command == "Unbook") && isOpen)
 		{
@@ -205,11 +224,15 @@ void System::run()
 			int d, m, y, s, r;
 			std::cout << "Event: ";
 			getline(std::cin, name);
-			std::cout << "Date: ";
-			std::cin >> d >> m >> y;
+			std::cout << "year: ";
+			std::cin >> y;
+			std::cout << "month: ";
+			std::cin >> m;
+			std::cout << "day: ";
+			std::cin >> d;
 			std::cout << "Row , seat: ";
 			std::cin >> r >> s;
-			unbook(name, Date(d, m, y), r, s);
+			unbook(name, Date(y, m, d), r, s);
 		}
 		else if ((command == "buy" || command == "Buy") && isOpen)
 		{
@@ -217,14 +240,18 @@ void System::run()
 			int d, m, y, s, r;
 			std::cout << "Event: ";
 			std::getline(std::cin, event);
-			std::cout << "Date: ";
-			std::cin >> d >> m >> y;
+			std::cout << "year: ";
+			std::cin >> y;
+			std::cout << "month: ";
+			std::cin >> m;
+			std::cout << "day: ";
+			std::cin >> d;
 			std::cout << "Row , seat: ";
 			std::cin >> r >> s;
 			std::cin.ignore();
 			std::cout << "Customer name: ";
 			std::getline(std::cin, name);
-			buy(event, Date(d, m, y), r, s, name);
+			buy(event, Date(y, m, d), r, s, name);
 		}
 		else if ((command == "bookings" || command == "Bookings") && isOpen)
 		{
@@ -237,10 +264,12 @@ void System::run()
 			std::cout << "Event: ";
 			std::getline(std::cin, event);
 
-			std::cout << "Date: ";
-			std::getline(std::cin, sD);
-			std::getline(std::cin, sM);
+			std::cout << "Year: ";
 			std::getline(std::cin, sY);
+			std::cout << "Month: ";
+			std::getline(std::cin, sM);
+			std::cout << "Day: ";
+			std::getline(std::cin, sD);
 
 			if (!sD.empty() && !sM.empty() && !sY.empty())
 			{
@@ -251,11 +280,11 @@ void System::run()
 
 			if (event == "")
 			{
-				bookings(Date(d, m, y));
+				bookings(Date(y, m, d));
 			}
 			else if (d > 0 && m > 0 && y > 0)
 			{
-				bookings(event, Date(d, m, y));
+				bookings(event, Date(y, m, d));
 			}
 			else
 			{
@@ -273,9 +302,19 @@ void System::run()
 		{
 			int d1, m1, y1, d2, m2, y2, n;
 			std::cout << "From: ";
-			std::cin >> d1 >> m1 >> y1;
+			std::cout << "year: ";
+			std::cin >> y1;
+			std::cout << "month: ";
+			std::cin >> m1;
+			std::cout << "day: ";
+			std::cin >> d1;
 			std::cout << "To: ";
-			std::cin >> d2 >> m2 >> y2;
+			std::cout << "year: ";
+			std::cin >> y2;
+			std::cout << "month: ";
+			std::cin >> m2;
+			std::cout << "day: ";
+			std::cin >> d2;
 			std::cin.ignore();
 			std::cout << "Hall number: ";
 			std::string hall;
@@ -286,11 +325,11 @@ void System::run()
 			}
 			if (hall == "")
 			{
-				report(Date(d1, m1, y1), Date(d2, m2, y2));
+				report(Date(y1, m1, d1), Date(y2, m2, d2));
 			}
 			else
 			{
-				report(Date(d1, m1, y1), Date(d2, m2, y2),n);
+				report(Date(y1, m1, d1), Date(y2, m2, d2),n);
 			}
 		}
 		else if ((command == "mostwatched" || command == "mostWatched" || command == "MostWatched" || command == "Mostwatched")
@@ -302,10 +341,20 @@ void System::run()
 		{
 			int d1, m1, y1, d2, m2, y2;
 			std::cout << "From: ";
-			std::cin >> d1 >> m1 >> y1;
+			std::cout << "year: ";
+			std::cin >> y1;
+			std::cout << "month: ";
+			std::cin >> m1;
+			std::cout << "day: ";
+			std::cin >> d1;
 			std::cout << "To: ";
-			std::cin >> d2 >> m2 >> y2;
-			underTen(Date(d1, m1, y1), Date(d2, m2, y2), std::cout);
+			std::cout << "year: ";
+			std::cin >> y2;
+			std::cout << "month: ";
+			std::cin >> m2;
+			std::cout << "day: ";
+			std::cin >> d2;
+			underTen(Date(y1, m1, d1), Date(y2, m2, d2), std::cout);
 			
 			std::string answer;
 			std::cout << "Do you want to save the statistics? ";
@@ -316,7 +365,7 @@ void System::run()
 				std::ofstream myfile;
 				myfile.open("statistics.txt");
 				
-				underTen(Date(d1, m1, y1), Date(d2, m2, y2), myfile);
+				underTen(Date(y1, m1, d1), Date(y2, m2, d2), myfile);
 				
 				std::cout << "Successfully saved as statistics.txt .\n";
 				myfile.close();

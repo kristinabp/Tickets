@@ -115,18 +115,55 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AddEventCommand.h" />
+    <ClInclude Include="BookCommand.h" />
+    <ClInclude Include="BookingCommand.h" />
+    <ClInclude Include="BuyCommand.h" />
+    <ClInclude Include="CheckCommand.h" />
+    <ClInclude Include="CloseCommand.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="ExitCommand.h" />
+    <ClInclude Include="FreeSeatsCommand.h" />
     <ClInclude Include="Hall.h" />
-    <ClInclude Include="Interface.h" />
+    <ClInclude Include="HelpCommand.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="Invoker.h" />
+    <ClInclude Include="MostWatchedCommand.h" />
+    <ClInclude Include="OpenCommand.h" />
+    <ClInclude Include="ReportCommand.h" />
+    <ClInclude Include="SaveAsCommand.h" />
+    <ClInclude Include="SaveCommand.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="UnbookCommand.h" />
+    <ClInclude Include="UnderTenCommand.h" />
+    <ClInclude Include="Validator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddEventCommand.cpp" />
+    <ClCompile Include="BookCommand.cpp" />
+    <ClCompile Include="BookingCommand.cpp" />
+    <ClCompile Include="BuyCommand.cpp" />
+    <ClCompile Include="CheckCommand.cpp" />
+    <ClCompile Include="CloseCommand.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="ExitCommand.cpp" />
+    <ClCompile Include="FreeSeatsCommand.cpp" />
     <ClCompile Include="Hall.cpp" />
+    <ClCompile Include="HelpCommand.cpp" />
+    <ClCompile Include="ICommand.cpp" />
+    <ClCompile Include="Invoker.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MostWatchedCommand.cpp" />
+    <ClCompile Include="OpenCommand.cpp" />
+    <ClCompile Include="ReportCommand.cpp" />
+    <ClCompile Include="SaveAsCommand.cpp" />
+    <ClCompile Include="SaveCommand.cpp" />
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="UnbookCommand.cpp" />
+    <ClCompile Include="UnderTenCommand.cpp" />
+    <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

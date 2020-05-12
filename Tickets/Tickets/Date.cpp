@@ -2,12 +2,13 @@
 
 void Date::copy(const Date & other)
 {
-	this->day = other.day;
-	this->month = other.month;
 	this->year = other.year;
+	this->month = other.month;
+	this->day = other.day;
 }
+	
 
-bool Date::validDate(int day, int month, int year)
+bool Date::validDate(int year, int month, int day)
 {
 	if (!year) return false;
 
@@ -31,11 +32,11 @@ bool Date::validDate(int day, int month, int year)
 	return day > 0 && day <= maxDays;
 }
 
-Date::Date() : day(1), month(1), year(2020)
+Date::Date() : year(0), month(0), day(0)
 {
 }
 
-Date::Date(int day, int month, int year) : day(day), month(month), year(year)
+Date::Date(int year, int month, int day) : year(year), month(month), day(day)
 {
 }
 
@@ -86,15 +87,6 @@ bool Date::operator>=(const Date & other) const
 	return this->day >= other.day;
 }
 
-Date & Date::operator++(int)
-{
-	if (validDate(++this->day, this->month, this->year)) return *this;
-	this->day = 1;
-	if (validDate(this->day, ++this->month, this->year)) return *this;
-	this->month = 1;
-	if (validDate(this->day, this->month, ++this->year)) return *this;
-}
-
 int Date::getDay() const
 {
 	return this->day;
@@ -128,11 +120,11 @@ void Date::setYear(int y)
 
 void Date::print() const
 {
-	std::cout << this->day << '-' << this->month << '-' << this->year;
+	std::cout << this->year << '-' << this->month << '-' << this->day;
 }
 
 std::ostream & operator<<(std::ostream & os, const Date & date)
 {
-	os << date.day << '-' << date.month << '-' << date.year;
+	os << date.year << '-' << date.month << '-' << date.day;
 	return os;
 }
