@@ -194,4 +194,8 @@ bool Validator::validateCommand(ICommand * cmd, std::string input)
 		}
 		else return false;
 	}
+	else
+	{
+		return false;
+	}
 }

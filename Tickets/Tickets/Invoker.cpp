@@ -42,5 +42,5 @@ void Invoker::executeCommand(std::string input)
 		}
 	}
 
-	std::cout << "Use command name.\n";
+	std::cout <<"Incorrect command.Try again.\n";
 }

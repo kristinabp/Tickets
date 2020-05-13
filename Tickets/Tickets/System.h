@@ -13,15 +13,12 @@ class System
 private:
 	std::vector <Event*> events;
 	std::string fileName;
-	std::string command;
 	bool isOpen=false;
 
 
 public:
 	System();
 	System(std::vector<Event*> events);
-
-	void run();
 
 	void open(const std::string fileName);
 	void save();
@@ -30,11 +27,11 @@ public:
 	void help();
 	void exit();
 
-	System& addEvent(Event* event);
+	void addEvent(Event* event);
 	void freeSeats(const std::string name, const Date& date);
-	bool book(const std::string name, const Date& date, int row, int seat, const std::string note);
-	bool unbook(const std::string name, const Date& date, int row, int seat);
-	bool buy(const std::string name, const Date& date, int row, int seat, const std::string note);
+	void book(const std::string name, const Date& date, int row, int seat, const std::string note);
+	void unbook(const std::string name, const Date& date, int row, int seat);
+	void buy(const std::string name, const Date& date, int row, int seat, const std::string note);
 	void bookings(const std::string name, const Date& date)const;
 	void bookings(const std::string name)const;
 	void bookings(const Date& date)const;
