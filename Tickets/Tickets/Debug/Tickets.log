@@ -1,21 +1,2 @@
-﻿  AddEventCommand.cpp
-  BookCommand.cpp
-  BookingCommand.cpp
-  BuyCommand.cpp
-  CheckCommand.cpp
-  CloseCommand.cpp
-  ExitCommand.cpp
-  FreeSeatsCommand.cpp
-  HelpCommand.cpp
-  Invoker.cpp
-  MostWatchedCommand.cpp
-  OpenCommand.cpp
-  ReportCommand.cpp
-  SaveAsCommand.cpp
-  SaveCommand.cpp
-  System.cpp
-  UnbookCommand.cpp
-  UnderTenCommand.cpp
-  main.cpp
-  Generating Code...
+﻿  System.cpp
   Tickets.vcxproj -> C:\Users\Home PC\Desktop\github-repositories\Tickets\Tickets\Debug\Tickets.exe

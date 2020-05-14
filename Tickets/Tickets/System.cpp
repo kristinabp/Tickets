@@ -61,7 +61,6 @@ void System::save()
 
 			}
 			ofs.close();
-			this->isOpen = false;
 			std::cout << "> save " << fileName << "\n";
 			std::cout << "Successfully saved " << fileName << "\n";
 		}
@@ -169,14 +168,21 @@ void System::addEvent(Event* event)
 	{
 		for (size_t i = 0; i < events.size(); i++)
 		{
-			if (event->getDate() == events[i]->getDate()
-				&& event->getHall() == events[i]->getHall())
+			if (event->getHall().getNumber() == events[i]->getHall().getNumber())
 			{
-				std::cout << "!error - already exist an event on this date in this hall!\n";
+				if (event->getDate() == events[i]->getDate()
+					&& event->getHall() == events[i]->getHall())
+				{
+					std::cout << "!error - already exist an event on this date in this hall!\n";
+					return;
+				}
+				std::cout << "!error - this hall is incorrect!\n";
 				return;
 			}
 		}
 		this->events.push_back(event->clone());
+		std::cout << "Successfully added event " << event->getName() << " in hall " << event->getHall().getNumber() << " on " <<
+			event->getDate()<< "\n";
 		return;
 	}
 	else
