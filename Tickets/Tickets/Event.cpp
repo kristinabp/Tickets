@@ -214,6 +214,7 @@ void Event::bookSeat(int row, int seat, std::string name)
 		note[row - 1][seat - 1] = name;
 		freeSeats--;
 		createId(row, seat);
+		std::cout << "Successfully booked a ticket with id " << id[row-1][seat-1] << ".\n";
 	}
 
 }
@@ -230,6 +231,7 @@ void Event::unbookSeat(int row, int seat)
 		note[row - 1][seat - 1] = "";
 		id[row - 1][seat - 1] = "";
 		freeSeats++;
+		std::cout << "Successfully unbooked a ticket.\n";
 	}
 }
 
@@ -252,6 +254,7 @@ void Event::buy(int row, int seat,std::string name)
 		{
 			seats[row - 1][seat - 1] = PAID;
 			soldSeats++;
+			std::cout << "Successfully bought a ticket with id " << id[row-1][seat-1] << ".\n";
 		}
 		else
 		{
@@ -265,6 +268,7 @@ void Event::buy(int row, int seat,std::string name)
 		soldSeats++;
 		this->note[row - 1][seat - 1] = name;
 		createId(row, seat);
+		std::cout << "Successfully bought a ticket with id " << id[row - 1][seat - 1] << ".\n";
 	}
 }
 

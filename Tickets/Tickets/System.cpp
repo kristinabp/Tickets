@@ -221,8 +221,6 @@ void System::book(const std::string name, const Date & date, int row, int seat, 
 			if (events[i]->getName() == name && events[i]->getDate() == date)
 			{
 				events[i]->bookSeat(row, seat, note);
-				std::cout << "Successfully booked a ticket with id " << row << "-" << seat << "-" << note << "-" << date.getYear() <<
-					"-" << date.getMonth() << "-" << date.getDay() << ".\n";
 				return;
 			}
 		}
@@ -245,7 +243,6 @@ void System::unbook(const std::string name, const Date & date, int row, int seat
 			if (events[i]->getName() == name && events[i]->getDate() == date)
 			{
 				events[i]->unbookSeat(row, seat);
-				std::cout << "Successfully unbooked a ticket.\n";
 				return;
 			}
 		}
@@ -267,8 +264,6 @@ void System::buy(const std::string name, const Date & date, int row, int seat, c
 			if (events[i]->getName() == name && events[i]->getDate() == date)
 			{
 				events[i]->buy(row, seat, note);
-				std::cout << "Successfully bought a ticket with id " << row << "-" << seat << "-" << note << "-" << date.getYear() <<
-					"-" << date.getMonth() << "-" << date.getDay() << ".\n";
 				return;
 			}
 		}

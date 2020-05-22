@@ -36,13 +36,23 @@ Date::Date() : year(0), month(0), day(0)
 {
 }
 
-Date::Date(int year, int month, int day) : year(year), month(month), day(day)
+Date::Date(int year, int month, int day) 
 {
+	if (validDate(year, month, day))
+	{
+		this->year = year;
+		this->month = month;
+		this->day = day;
+	}
+	else
+	{
+		std::cout << "Incorrect date!\n";
+	}
 }
 
 Date::Date(const Date & other)
 {
-	copy(other);
+	copy(other); 
 }
 
 Date::~Date()
