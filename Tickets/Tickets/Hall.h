@@ -27,6 +27,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Hall& hall);
 
 	void print()const;
+	void save(std::ostream& os);
 };
 #endif // !HALL_H
 

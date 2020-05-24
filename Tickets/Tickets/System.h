@@ -12,8 +12,9 @@ class System
 {
 private:
 	std::vector <Event*> events;
+	std::vector <Hall*> availableHalls;
 	std::string fileName;
-	bool isOpen=false;
+	bool isOpen;
 
 
 public:

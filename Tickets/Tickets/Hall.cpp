@@ -60,6 +60,11 @@ void Hall::print() const
 	std::cout << "Hall " << this->number  /*<<", seats: " << getCapacity()*/;
 }
 
+void Hall::save(std::ostream & os)
+{
+	os << this->number << "\t" << this->rows << "\t" << this->seats << "\n";
+}
+
 std::ostream & operator<<(std::ostream & os, const Hall & hall)
 {
 	os << hall.number;

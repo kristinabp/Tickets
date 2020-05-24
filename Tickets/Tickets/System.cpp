@@ -12,6 +12,14 @@ void System::open(const std::string fileName)
 			this->fileName = fileName;
 			std::string name;
 			int n, r, s, d, m, y;
+			int numberOfHalls;
+			int hallNumber, rows, seats;
+			inputFile >> numberOfHalls;
+			for (size_t i = 0; i < numberOfHalls; i++)
+			{
+				inputFile >> hallNumber >> rows >> seats;
+				availableHalls.push_back(new Hall(hallNumber, rows, seats));
+			}
 			while (inputFile >> name >> y >> m >> d >> n >> r >> s) {
 				addEvent(new Event(name, Date(y, m, d), Hall(n, r, s)));
 			}
@@ -21,6 +29,13 @@ void System::open(const std::string fileName)
 			std::cout << "> open " << fileName << "\n";
 			std::cout << "Successfully opened " << fileName << "\n";
 			std::cout << "------------------------------------------\n";
+			std::cout << "-----------Available halls:--------------\n";
+			for (size_t i = 0; i < availableHalls.size(); i++)
+			{
+				availableHalls[i]->print();
+				std::cout <<" "<< availableHalls[i]->getRows()<<" " << availableHalls[i]->getSeats() <<"\n";
+
+			}
 			std::cout << "-----------Available events:--------------\n";
 			for (size_t i = 0; i < events.size(); i++)
 			{
@@ -55,6 +70,11 @@ void System::save()
 		{
 			std::ofstream ofs(fileName);
 
+			ofs << availableHalls.size() << "\n";
+			for (size_t i = 0; i < availableHalls.size(); i++)
+			{
+				availableHalls[i]->save(ofs);
+			}
 			for (size_t i = 0; i < events.size(); i++)
 			{
 				events[i]->save(ofs);
@@ -80,6 +100,11 @@ void System::saveAs(const std::string fileName)
 		myfile.open(fileName);
 		if (myfile.good())
 		{
+			myfile << availableHalls.size() << "\n";
+			for (size_t i = 0; i < availableHalls.size(); i++)
+			{
+				availableHalls[i]->save(myfile);
+			}
 			for (size_t i = 0; i < events.size(); i++)
 			{
 				events[i]->save(myfile);
@@ -110,6 +135,7 @@ void System::close()
 		this->isOpen = false;
 		this->fileName = "";
 		this->events.clear();
+		this->availableHalls.clear();
 	}
 	else
 	{
@@ -153,7 +179,7 @@ void System::exit()
 	std::cout << "Exiting the program...\n";
 }
 
-System::System() : events(std::vector<Event*>())
+System::System() : events(std::vector<Event*>()), availableHalls(std::vector<Hall*>()), fileName(""), isOpen(false)
 {
 }
 
@@ -166,23 +192,71 @@ void System::addEvent(Event* event)
 {
 	if (isOpen)
 	{
-		for (size_t i = 0; i < events.size(); i++)
+		/*for (size_t i = 0; i < events.size(); i++)
 		{
-			if (event->getHall().getNumber() == events[i]->getHall().getNumber())
+			for (size_t j = 0; j < availableHalls.size(); j++)
 			{
-				if (event->getDate() == events[i]->getDate()
-					&& event->getHall() == events[i]->getHall())
+				if (event->getHall() == *availableHalls[j])
 				{
-					std::cout << "!error - already exist an event on this date in this hall!\n";
-					return;
+					if (event->getHall().getNumber() == events[i]->getHall().getNumber())
+					{
+						if (event->getDate() == events[i]->getDate()
+							&& event->getHall() == events[i]->getHall())
+						{
+							std::cout << "!error - already exist an event on this date in this hall!\n";
+							return;
+						}
+						std::cout << "!error - this hall is incorrect!\n";
+						return;
+					}
 				}
-				std::cout << "!error - this hall is incorrect!\n";
-				return;
 			}
 		}
-		this->events.push_back(event->clone());
-		std::cout << "Successfully added event " << event->getName() << " in hall " << event->getHall().getNumber() << " on " <<
-			event->getDate()<< "\n";
+*/
+		bool findHall = true;
+		for (size_t i = 0; i < availableHalls.size(); i++)
+		{
+			if (event->getHall() == *availableHalls[i])
+			{
+				
+				for (size_t j = 0; j < events.size(); j++)
+				{
+					if (event->getHall().getNumber() == events[j]->getHall().getNumber()
+						&& event->getDate() == events[j]->getDate()
+						&& event->getHall() == events[j]->getHall())
+					{
+						/*if (event->getDate() == events[j]->getDate()
+							&& event->getHall() == events[j]->getHall())
+						{
+							std::cout << "!error - already exist an event on this date in this hall!\n";
+							return;
+						}*/
+						std::cout << "The hall is incorrect!\n";
+						return;
+					}
+				}
+				findHall = true;
+				break;
+			}
+			else
+			{
+				findHall = false;
+			}
+			if (findHall)
+			{
+				break;
+			}
+		}
+		if (findHall)
+		{
+			this->events.push_back(event->clone());
+			std::cout << "Successfully added event " << event->getName() << " in hall " << event->getHall().getNumber() << " on " <<
+				event->getDate() << "\n";
+		}
+		else
+		{
+			std::cout << "This hall does not exist!\n";
+		}
 		return;
 	}
 	else
