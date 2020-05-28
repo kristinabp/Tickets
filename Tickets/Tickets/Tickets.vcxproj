@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AddEventCommand.h" />
+    <ClInclude Include="AddHallCommand.h" />
     <ClInclude Include="BookCommand.h" />
     <ClInclude Include="BookingCommand.h" />
     <ClInclude Include="BuyCommand.h" />
@@ -141,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddEventCommand.cpp" />
+    <ClCompile Include="AddHallCommand.cpp" />
     <ClCompile Include="BookCommand.cpp" />
     <ClCompile Include="BookingCommand.cpp" />
     <ClCompile Include="BuyCommand.cpp" />

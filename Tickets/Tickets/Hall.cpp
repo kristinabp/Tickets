@@ -35,6 +35,11 @@ bool Hall::operator==(const Hall & other) const
 	return this->number == other.number && this->rows == other.rows && this->seats == other.seats;
 }
 
+Hall * Hall::clone() const
+{
+	return new Hall(*this);
+}
+
 int Hall::getNumber() const
 {
 	return this->number;
@@ -57,7 +62,7 @@ int Hall::getSeats() const
 
 void Hall::print() const
 {
-	std::cout << "Hall " << this->number  /*<<", seats: " << getCapacity()*/;
+	std::cout << "Hall " << this->number;
 }
 
 void Hall::save(std::ostream & os)

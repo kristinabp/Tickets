@@ -52,7 +52,7 @@ void System::open(const std::string fileName)
 			this->isOpen = true;
 			this->fileName = fileName;
 			inputFile.close();
-			std::cout << "Please, add events.\n";
+			std::cout << "Please, add halls and events.\n";
 		}
 	}
 	else
@@ -156,6 +156,7 @@ void System::help()
 		std::cout << "|help					prints this information\n";
 		std::cout << "|exit					exists the program\n";
 		std::cout << "|addevent <name> <date> <hall>		adds new event\n";
+		std::cout << "|addhall <hall>		        adds new halls\n";
 		std::cout << "|freeseats <name> <date>		shows free seats\n";
 		std::cout << "|book <name> <date> <row> <seat> <note>	books a ticket\n";
 		std::cout << "|unbook <name> <date> <row> <seat>	unbooks a ticket\n";
@@ -192,45 +193,17 @@ void System::addEvent(Event* event)
 {
 	if (isOpen)
 	{
-		/*for (size_t i = 0; i < events.size(); i++)
-		{
-			for (size_t j = 0; j < availableHalls.size(); j++)
-			{
-				if (event->getHall() == *availableHalls[j])
-				{
-					if (event->getHall().getNumber() == events[i]->getHall().getNumber())
-					{
-						if (event->getDate() == events[i]->getDate()
-							&& event->getHall() == events[i]->getHall())
-						{
-							std::cout << "!error - already exist an event on this date in this hall!\n";
-							return;
-						}
-						std::cout << "!error - this hall is incorrect!\n";
-						return;
-					}
-				}
-			}
-		}
-*/
 		bool findHall = true;
 		for (size_t i = 0; i < availableHalls.size(); i++)
 		{
 			if (event->getHall() == *availableHalls[i])
 			{
-				
 				for (size_t j = 0; j < events.size(); j++)
 				{
 					if (event->getHall().getNumber() == events[j]->getHall().getNumber()
 						&& event->getDate() == events[j]->getDate()
 						&& event->getHall() == events[j]->getHall())
 					{
-						/*if (event->getDate() == events[j]->getDate()
-							&& event->getHall() == events[j]->getHall())
-						{
-							std::cout << "!error - already exist an event on this date in this hall!\n";
-							return;
-						}*/
 						std::cout << "The hall is incorrect!\n";
 						return;
 					}
@@ -258,6 +231,28 @@ void System::addEvent(Event* event)
 			std::cout << "This hall does not exist!\n";
 		}
 		return;
+	}
+	else
+	{
+		std::cout << "Please, open a file.\n";
+	}
+}
+
+void System::addHall(Hall * hall)
+{
+	if (isOpen)
+	{
+		for (size_t i = 0; i < availableHalls.size(); i++)
+		{
+			if (availableHalls[i]->getNumber() == hall->getNumber() && availableHalls[i]->getRows()==hall->getRows()
+				&& availableHalls[i]->getSeats()==hall->getSeats())
+			{
+				std::cout << "The hall already exists!\n";
+				return;
+			}
+		}
+		availableHalls.push_back(hall->clone());
+		std::cout << "Successfully added new hall " <<  hall->getNumber() << "\n";
 	}
 	else
 	{
@@ -341,7 +336,8 @@ void System::buy(const std::string name, const Date & date, int row, int seat, c
 				return;
 			}
 		}
-		
+
+		std::cout << "Incorrect event. Please try again!\n";
 	}
 	else
 	{

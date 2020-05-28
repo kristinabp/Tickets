@@ -20,6 +20,8 @@ public:
 	Hall& operator=(const Hall& other);
 	bool operator==(const Hall& other)const;
 
+	Hall* clone()const;
+
 	int getNumber()const;
 	int getRows()const;
 	int getCapacity()const;

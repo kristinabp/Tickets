@@ -9,6 +9,7 @@
 #include "HelpCommand.h"
 #include "ExitCommand.h"
 #include "AddEventCommand.h"
+#include "AddHallCommand.h"
 #include "BookCommand.h"
 #include "FreeSeatsCommand.h"
 #include "UnbookCommand.h"

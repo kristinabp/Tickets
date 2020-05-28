@@ -29,6 +29,7 @@ public:
 	void exit();
 
 	void addEvent(Event* event);
+	void addHall(Hall* hall);
 	void freeSeats(const std::string name, const Date& date);
 	void book(const std::string name, const Date& date, int row, int seat, const std::string note);
 	void unbook(const std::string name, const Date& date, int row, int seat);

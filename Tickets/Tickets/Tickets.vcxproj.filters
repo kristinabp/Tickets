@@ -84,6 +84,9 @@
     <ClInclude Include="BuyCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AddHallCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -156,6 +159,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BuyCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddHallCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

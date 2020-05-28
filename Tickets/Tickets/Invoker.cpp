@@ -18,6 +18,7 @@ Invoker::Invoker(): receiver(new System())
 	commands.push_back(new MostWatchedCommand(*receiver));
 	commands.push_back(new UnderTenCommand(*receiver));
 	commands.push_back(new BuyCommand(*receiver));
+	commands.push_back(new AddHallCommand(*receiver));
 }
 
 Invoker::Invoker(ICommand * command) : receiver(new System())
