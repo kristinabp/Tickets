@@ -1,3 +1,38 @@
-﻿  System.cpp
+﻿  AddEventCommand.cpp
+  AddHallCommand.cpp
+  BookCommand.cpp
+  BookingCommand.cpp
+  BuyCommand.cpp
+  CheckCommand.cpp
+  CloseCommand.cpp
+  Date.cpp
+  Event.cpp
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(47): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(49): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(54): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(56): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(155): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(157): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(170): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(172): warning C4018: '<': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(277): warning C4018: '<=': signed/unsigned mismatch
+c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\event.cpp(279): warning C4018: '<=': signed/unsigned mismatch
+  ExitCommand.cpp
+  FreeSeatsCommand.cpp
+  Hall.cpp
+  HelpCommand.cpp
+  Invoker.cpp
+  MostWatchedCommand.cpp
+  OpenCommand.cpp
+  ReportCommand.cpp
+  SaveAsCommand.cpp
+  SaveCommand.cpp
+  System.cpp
 c:\users\home pc\desktop\github-repositories\tickets\tickets\tickets\system.cpp(18): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  UnbookCommand.cpp
+  UnderTenCommand.cpp
+  main.cpp
+  Generating Code...
   Tickets.vcxproj -> C:\Users\Home PC\Desktop\github-repositories\Tickets\Tickets\Debug\Tickets.exe

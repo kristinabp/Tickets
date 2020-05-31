@@ -7,6 +7,10 @@ void Hall::copy(const Hall & other)
 	this->seats = other.seats;
 }
 
+Hall::Hall():number(0), rows(0), seats(0)
+{
+}
+
 Hall::Hall(int number, int rows, int seats) :number(number), rows(rows), seats(seats)
 {
 }

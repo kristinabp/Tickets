@@ -16,7 +16,6 @@ private:
 	std::string fileName;
 	bool isOpen;
 
-
 public:
 	System();
 	System(std::vector<Event*> events);
@@ -43,9 +42,7 @@ public:
 	void mostWatched();
 	void underTen(const Date& from, const Date& to, std::ostream& os);
 	
-
 	void print()const;
-
 };
 #endif // !SYSTEM_H
 

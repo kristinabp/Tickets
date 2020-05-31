@@ -278,15 +278,15 @@ void Event::printSeats() const
 	{
 		for (size_t j = 1; j <= hall.getSeats(); j++)
 		{
-			if (seats[i - 1][j - 1] == 1)
+			if (seats[i - 1][j - 1] == RESERVED)
 			{
 				std::cout << "Row: " << i << ", seat: " << j << " - booked; not paid \n";
 			}
-			else if(seats[i - 1][j - 1] == 0)
+			else if(seats[i - 1][j - 1] == NOTRESERVED)
 			{
 				std::cout << "Row: " << i << ", seat: " << j << " - not booked; not paid \n";
 			}
-			else if (seats[i - 1][j - 1] == 2)
+			else if (seats[i - 1][j - 1] == PAID)
 			{
 				std::cout << "Row: " << i << ", seat: " << j << " - paid \n";
 			}

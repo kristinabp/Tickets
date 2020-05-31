@@ -108,7 +108,6 @@ void System::saveAs(const std::string fileName)
 			for (size_t i = 0; i < events.size(); i++)
 			{
 				events[i]->save(myfile);
-
 			}
 			myfile.close();
 			std::cout << "> save as " << fileName << "\n";

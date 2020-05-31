@@ -13,7 +13,8 @@ private:
 	void copy(const Hall& other);
 
 public:
-	Hall(int number = 0, int rows = 0, int seats = 0);
+	Hall();
+	Hall(int number, int rows, int seats);
 	Hall(const Hall& other);
 	~Hall();
 
